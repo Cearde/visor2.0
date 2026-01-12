@@ -1,0 +1,32 @@
+# =====================
+# .NET
+# =====================
+**/bin/
+**/obj/
+*.user
+*.suo
+
+# =====================
+# React / Node
+# =====================
+**/node_modules/
+**/build/
+**/dist/
+
+# =====================
+# Environment variables
+# =====================
+.env
+.env.*
+!*.env.example
+
+# =====================
+# IDE / OS
+# =====================
+.vscode/
+.idea/
+.DS_Store
+
+# appsettings sensibles
+appsettings*.json
+!appsettings.json

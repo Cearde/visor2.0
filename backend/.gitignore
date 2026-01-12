@@ -1,0 +1,41 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# =====================
+# .NET
+# =====================
+**/bin/
+**/obj/
+*.user
+*.suo
+
+# =====================
+# React / Node
+# =====================
+**/node_modules/
+**/build/
+**/dist/
+
+# =====================
+# Environment variables
+# =====================
+.env
+.env.*
+!*.env.example
+
+# =====================
+# IDE / OS
+# =====================
+.vscode/
+.idea/
+.DS_Store
+
+# appsettings (NO subir reales)
+appsettings.Development.json
+appsettings.json
+!appsettings.example.json
+
