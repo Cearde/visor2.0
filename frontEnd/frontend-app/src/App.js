@@ -31,14 +31,23 @@ const handleSubmit = async (idFromUrlOrInput) => {
 
     try {
       const data = await getDocument(idToUse);
-      if (data.base64) {
+      if(data.status == "ok" && data.base64){
+        setPdfBase64(`data:application/pdf;base64,${data.base64}`);
+        setMessage(data.mensaje);
+        setMessageType('success');
+      }
+      else{
+        setMessage(data.message || 'No se encontro el documento');
+        setMessageType('error');
+      }
+      /*if (data.base64) {
         setPdfBase64(`data:application/pdf;base64,${data.base64}`);
         setMessage('PDF leído correctamente!');
         setMessageType('success');
       } else {
         setMessage(data.message || 'No se encontro el documento');
         setMessageType('error');
-      }
+      }*/
     } catch (error) {
       setMessage(error.message);
       setMessageType('error');
@@ -70,8 +79,9 @@ const handleSubmit = async (idFromUrlOrInput) => {
       <div className="row">
         <div className="col-md-8 offset-md-2">
           <div className="card">
-            <div className="card-header">
-              <h1 className="text-center">Verificador de documentos</h1>
+            <div className="card-header text-center">
+            <img src="/logo.png" alt="Logo" className="logo mb-3 " />
+              <h4 className="text-center">Verificador de documentos</h4>
             </div>
             <div className="card-body">
               <DocumentForm

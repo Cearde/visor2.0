@@ -43,7 +43,8 @@ app.UseCors("AllowAll");
 
 app.MapGet("/api/documentos/{id}", (string id) =>
 {
-    return Results.Ok(new { message = $"ID de documento recibido: {id}" });
+    var today = DateTime.Today.ToString();
+    return Results.Ok(new { message = $"ID de documento recibido: {id}  {today}" });
 })
 .WithName("GetDocumento");
 

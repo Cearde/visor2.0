@@ -23,14 +23,19 @@ namespace VisorDoc.Services
 
         public async Task<JsonElement> GetSharePointSiteInfoAsync(string id)
         {
-            var accessToken = await _tokenService.GetApplicationTokenAsync();
+            var NeedAuthentication = _configuration.GetSection("Config")["NeedAuthentication"];
+            
             
             var client = _httpClientFactory.CreateClient(); 
             var apiEndpoint = _configuration.GetSection("PowerAutomate")["ApiEndpoint"];
-            var powerAutomateUrl = _configuration.GetSection("PowerAutomate")["ApiEndpoint"];;
+            var powerAutomateUrl = _configuration.GetSection("PowerAutomate")["ApiEndpoint"];
  
             var request = new HttpRequestMessage(HttpMethod.Post, powerAutomateUrl); 
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+            if(NeedAuthentication == "true"){
+                var accessToken = await _tokenService.GetApplicationTokenAsync();
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            }
             request.Headers.Add("Accept", "application/json;odata=verbose");
 
 
